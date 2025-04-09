@@ -37,7 +37,14 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 
 - Add Host Entry: `sudo nano /etc/hosts` `127.0.0.1   laravel_project.test`
 
-## Create Breeze Auth
+## Use Breeze Auth
 
 - `composer require laravel/breeze --dev` 
 - `php artisan breeze:install`
+
+## Use data and generate user data
+
+- Create seeder `php artisan make:seeder UserSeeder` and modify logic
+- Register Seeder in `DatabaseSeeder.php`
+- Run Seeder `php artisan db:seed`
+
