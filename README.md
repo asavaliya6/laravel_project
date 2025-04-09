@@ -42,9 +42,14 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - `composer require laravel/breeze --dev` 
 - `php artisan breeze:install`
 
-## Use data and generate user data
+## Use Seeder and Generate User data
 
 - Create seeder `php artisan make:seeder UserSeeder` and modify logic
 - Register Seeder in `DatabaseSeeder.php`
 - Run Seeder `php artisan db:seed`
 
+## Use Datatable to Show Listing
+
+- Create Route => routes/web.php
+- Create Controller `php artisan make:controller UserController`
+- Create Blade View => resources/views/users/index.blade.php
