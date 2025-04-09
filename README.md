@@ -54,9 +54,17 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - Create Controller `php artisan make:controller UserController`
 - Create Blade View => resources/views/users/index.blade.php
 
-## Use Yajra Plugin and Php Carbon to Generate User data
+## Use Yajra Plugin and Php Carbon to Display Userdata
 
 - Install Yajra `composer require yajra/laravel-datatables-oracle:"^12.0"` and configure `php artisan vendor:publish --tag=datatables`
 - Create Route => routes/web.php
 - Add Class in Controller => UserController
 - Create Blade View => resources/views/users/list.blade.php, resources/views/users/edit.blade.php
+
+## Send Email 
+
+- Create app and password https://support.google.com/mail/answer/185833?hl=en
+- Create Mailable class `php artisan make:mail TestMail`
+- Create Controller `php artisan make:controller EmailController`
+- Blade View => resources/views/emails/send-email.blade.php
+- Add route 
