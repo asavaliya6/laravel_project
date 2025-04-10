@@ -26,19 +26,20 @@ class UserController extends Controller
     public function list(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
+            $userQuery = User::select('*');
+
+            $isActive = $request->input('isActive');
+            if ($isActive === 'active') {
+                $userQuery->where('status', 1); 
+            } elseif ($isActive === 'inactive') {
+                $userQuery->where('status', 0); 
+            }
+
+            return DataTables::of($userQuery)
                 ->editColumn('created_at', function ($row) {
                     return Carbon::parse($row->created_at)->format('d M Y h:i A');
                 })
-                ->addColumn('action', function ($row) {
-                    $editBtn = '<a href="' . route('users.edit', $row->id) . '" class="btn btn-sm btn-primary">Edit</a>';
-                    $deleteBtn = '<button data-id="' . $row->id . '" class="btn btn-sm btn-danger deleteUser">Delete</button>';
-                    return $editBtn . ' ' . $deleteBtn;
-                })
-                ->rawColumns(['action']) 
-                ->make(true);
+                ->make(true); 
         }
 
         return view('users.list');
@@ -54,18 +55,22 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
+            'status' => 'required|boolean',
         ]);
 
-        $user->update($request->only('name', 'email'));
+        $user->update($request->only('name', 'email', 'status'));
 
-        return redirect()->route('users.list')->with('success', 'User updated successfully');
+        return redirect()->route('users.list')->with('success', 'User updated successfully.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
 
-        return response()->json(['success' => true, 'message' => 'User deleted successfully.']);
+        return response()->json([
+            'success' => true,
+            'message' => 'User deleted successfully.'
+        ]);
     }
 
 }
