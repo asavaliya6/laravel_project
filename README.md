@@ -68,3 +68,9 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - Create Controller `php artisan make:controller EmailController`
 - Blade View => resources/views/emails/send-email.blade.php
 - Add route 
+
+## Send Email on delete
+
+-> Create Mailable class `php artisan make:mail UserDeletedMail --markdown=emails.user-deleted`
+-> Create Observable class `php artisan make:observer UserObserver --model=User`
+-> Register observer class in => AppServiceProvider
