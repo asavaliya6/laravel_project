@@ -81,3 +81,9 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - Update => Observers/UserObserver.php
 - Create Migration table using queue `php artisan make:queue-table` and migrate table `php artisan migrate`
 - run queue  `php artisan queue:work`
+
+## Getter / Setter method 
+
+- Create Controller => ProductController, Model => Product and Migration => Products
+- Create View => Product/list, Product/success
+

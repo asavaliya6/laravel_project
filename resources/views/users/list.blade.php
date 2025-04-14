@@ -161,19 +161,21 @@
 
             $(document).on('click', '.deleteUser', function () {
                 let id = $(this).data("id");
-                if (confirm("Are you sure?")) {
-                    $.ajax({
-                        url: `/users/${id}`,
-                        type: "DELETE",
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function () {
-                            table.ajax.reload();
-                            alert("User deleted successfully.");
-                        }
-                    });
-                }
+
+                $.ajax({
+                    url: `/users/${id}`,
+                    type: "DELETE",
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function () {
+                        alert("User deleted successfully.");
+                        table.ajax.reload(); 
+                    },
+                    error: function () {
+                        alert("Failed to delete user.");
+                    }
+                });
             });
         });
     </script>

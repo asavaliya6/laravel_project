@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;    
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,5 +29,8 @@ Route::put('/users/{user}', [UserController::class, 'update'])->name('users.upda
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/send-email', [EmailController::class, 'sendEmail'])->name('sendemail');
+
+Route::get('/product', [ProductController::class, 'setProduct'])->name('product');
+Route::get('/list-product', [ProductController::class, 'getProducts'])->name('list-product');
 
 require __DIR__.'/auth.php';
