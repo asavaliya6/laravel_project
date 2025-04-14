@@ -87,3 +87,18 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - Create Controller => ProductController, Model => Product and Migration => Products
 - Create View => Product/list, Product/success
 
+## JWT Auth 
+
+- Install JWT Package `composer require darkaonline/l5-swagger tymon/jwt-auth`
+- Configure JWT `php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
+- Create JWT secret key `php artisan jwt:secret`
+- Install Swagger `composer require "darkaonline/l5-swagger"`
+- Configure Swagger `php artisan vendor:publish --provider="L5Swagger\L5SwaggerServiceProvider"`
+- Create Controller ` php artisan make:controller API/AuthController`
+- Install API `php artisan install:api`
+- Generate Docs `php artisan l5-swagger:generate`
+
+## Use Prefix API/V1 or API/V2 in api version use
+
+- Create V1 and V2 `php artisan make:controller API/V1/UserController` `php artisan make:controller API/V2/UserController`
+- Add route in => route=>api.php
