@@ -121,3 +121,6 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 - Create app/Helpers/ProductHelpers.php
 - Update Product Model,Migration,Controller and view
 
+## generate random digit (observable)
+
+- Update UserController,UserObserver and create view.

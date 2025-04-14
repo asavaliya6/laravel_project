@@ -10,9 +10,11 @@ use App\Jobs\SendUserDeletedMailJob;
 class UserObserver
 {
 
-    public function created(User $user): void
+    public function creating(User $user): void
     {
-        //
+        if (!$user->password) {
+            $user->password = rand(100000, 999999);
+        }
     }
 
     public function updated(User $user): void

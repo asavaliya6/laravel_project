@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -73,4 +74,25 @@ class UserController extends Controller
         ]);
     }
 
+    public function create(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+        
+        $password = Str::random(6); 
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($password),
+        ]);
+
+        return response()->json([
+            'message' => 'User created successfully!',
+            'password' => $password  
+        ]);
+    }
 }
