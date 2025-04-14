@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;    
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,5 +33,13 @@ Route::get('/send-email', [EmailController::class, 'sendEmail'])->name('sendemai
 
 Route::get('/product', [ProductController::class, 'setProduct'])->name('product');
 Route::get('/list-product', [ProductController::class, 'getProducts'])->name('list-product');
+
+Route::post('/product/{id}/extend-subscription', [ProductController::class, 'extendProductSubscription']);
+
+Route::get('/create-user', function () {
+    return view('create-user'); 
+})->name('create-user');
+
+Route::post('/create-user', [UserController::class, 'create'])->name('create-user');
 
 require __DIR__.'/auth.php';

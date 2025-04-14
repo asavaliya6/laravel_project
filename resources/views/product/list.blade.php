@@ -19,6 +19,8 @@
                                     <th class="px-4 py-2 border">Name</th>
                                     <th class="px-4 py-2 border">Price</th>
                                     <th class="px-4 py-2 border">Description</th>
+                                    <th class="px-4 py-2 border">Subscription End Date</th>
+                                    <th class="px-4 py-2 border">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -28,6 +30,17 @@
                                         <td class="px-4 py-2 border">{{ $product->name }}</td>
                                         <td class="px-4 py-2 border">${{ $product->price }}</td>
                                         <td class="px-4 py-2 border">{{ $product->description }}</td>
+                                        <td class="px-4 py-2 border">
+                                            {{ $product->subscription_end_date ? $product->subscription_end_date->format('d-m-Y') : 'N/A' }}
+                                        </td>
+                                        <td class="px-4 py-2 border">
+                                            <form method="POST" action="{{ url('/product/' . $product->id . '/extend-subscription') }}">
+                                                @csrf
+                                                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+                                                    Extend Subscription +15 Days
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

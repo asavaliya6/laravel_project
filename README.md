@@ -102,3 +102,22 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 
 - Create V1 and V2 `php artisan make:controller API/V1/UserController` `php artisan make:controller API/V2/UserController`
 - Add route in => route=>api.php
+
+## Model we can add custom method
+ 
+1. Custom helper function
+
+- Create app/Helpers/helper.php file
+- Register File Path In composer.json File => composer.json
+- Update Product Model,Migration,Controller and view
+
+2. Creating Repository for helper function
+
+- Create Repositories/ProductRepository.php and inject into ProductController
+- Update Product Model,Migration,Controller and view
+
+3. Class Base helper function
+
+- Create app/Helpers/ProductHelpers.php
+- Update Product Model,Migration,Controller and view
+
