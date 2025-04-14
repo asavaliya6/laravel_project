@@ -71,6 +71,13 @@ CustomLog ${APACHE_LOG_DIR}/laravel_project_access.log combined
 
 ## Send Email on delete
 
--> Create Mailable class `php artisan make:mail UserDeletedMail --markdown=emails.user-deleted`
--> Create Observable class `php artisan make:observer UserObserver --model=User`
--> Register observer class in => AppServiceProvider
+- Create Mailable class `php artisan make:mail UserDeletedMail --markdown=emails.user-deleted`
+- Create Observable class `php artisan make:observer UserObserver --model=User`
+- Register observer class in => AppServiceProvider
+
+## Send Email on delete using queue
+
+- Create Job Class `php artisan make:job SendUserDeletedMailJob`
+- Update => Observers/UserObserver.php
+- Create Migration table using queue `php artisan make:queue-table` and migrate table `php artisan migrate`
+- run queue  `php artisan queue:work`
